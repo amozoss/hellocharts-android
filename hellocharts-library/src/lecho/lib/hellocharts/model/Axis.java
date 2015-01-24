@@ -20,6 +20,8 @@ import lecho.lib.hellocharts.util.ChartUtils;
  */
 public class Axis {
     public static final int DEFAULT_TEXT_SIZE_SP = 12;
+    private static final float DEFAULT_GOAL_LINE_VALUE = 1;
+    public static final int DEFAULT_GOAL_LINE_STROKE_WIDTH_DP = 3;
     /**
      * Text size for axis labels and name.
      */
@@ -57,6 +59,12 @@ public class Axis {
      * Axis grid lines color.
      */
     private int lineColor = ChartUtils.DEFAULT_DARKEN_COLOR;
+
+    private int goalLineColor = Color.WHITE;
+
+    private float goalLineValue =  DEFAULT_GOAL_LINE_VALUE;
+
+    private int goalLineStrokeWidth = DEFAULT_GOAL_LINE_STROKE_WIDTH_DP;
     /**
      * Typeface for labels and name text.
      */
@@ -232,6 +240,40 @@ public class Axis {
         return this;
     }
 
+    public int getGoalLineColor() {
+        return goalLineColor;
+    }
+
+    public Axis setGoalLineColor(int goalLineColor) {
+        this.goalLineColor = goalLineColor;
+        this.hasGoalLine = true;
+        return this;
+    }
+
+    public boolean hasGoalLine() {
+        return this.hasGoalLine;
+    }
+
+    public Axis setGoalLineStrokeWidth(int strokeWidth) {
+        this.hasGoalLine = true;
+        this.goalLineStrokeWidth = strokeWidth;
+        return this;
+    }
+
+    public int getGoalLineStrokeWidth() {
+        return this.goalLineStrokeWidth;
+    }
+
+    public Axis setGoalLineValue(float goalLineValue) {
+        this.hasGoalLine = true;
+        this.goalLineValue = goalLineValue;
+        return this;
+    }
+
+    public float getGoalLineValue() {
+        return goalLineValue;
+    }
+
     public int getTextSize() {
         return textSize;
     }
@@ -300,5 +342,4 @@ public class Axis {
         this.hasTiltedLabels = hasTiltedLabels;
         return this;
     }
-
 }
