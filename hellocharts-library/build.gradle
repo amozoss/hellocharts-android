@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
-apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
 
 buildscript {
     repositories {
@@ -18,8 +16,8 @@ dependencies {
 
 
 android {
-    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
-    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+    compileSdkVersion 21
+    buildToolsVersion '21.1.2'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -27,10 +25,10 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
-        targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
-        versionCode Integer.parseInt(project.VERSION_CODE)
-        versionName project.VERSION_NAME
+        minSdkVersion 16
+        targetSdkVersion 19
+        versionCode 222
+        versionName '1.3'
     }
 
     sourceSets {
@@ -58,43 +56,3 @@ android {
 
 }
 
-//Execute "gradle clean jarRelease" to cook jar.
-android.libraryVariants.all { variant ->
-    def name = variant.buildType.name
-    if (name.equals(com.android.builder.core.BuilderConstants.DEBUG)) {
-        return; // Skip debug builds.
-    }
-    def task = project.tasks.create "jar${name.capitalize()}", Jar
-    task.dependsOn variant.javaCompile
-    task.from variant.javaCompile.destinationDir
-    artifacts.add('archives', task);
-}
-
-// To publish to maven local execute "gradle clean build publishToMavenLocal"
-// To publish to nexus execute "gradle clean build publish"
-android.libraryVariants
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifact "${project.buildDir}/outputs/aar/${project.name}-release.aar"
-            artifactId = POM_ARTIFACT_ID
-            groupId = GROUP
-            version = VERSION_NAME
-
-            // Task androidSourcesJar is provided by gradle-mvn-push.gradle
-            //artifact androidSourcesJar {
-            //    classifier "sources"
-            //}
-        }
-    }
-
-    repositories {
-        maven {
-            credentials {
-                username 'nexusUser'
-                password 'nexusPass'
-            }
-            url "http://your-nexus-url/"
-        }
-    }
-}

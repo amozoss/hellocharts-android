@@ -60,6 +60,8 @@ public class Axis {
      */
     private int lineColor = ChartUtils.DEFAULT_DARKEN_COLOR;
 
+    private boolean hasGoalLine = false;
+
     private int goalLineColor = Color.WHITE;
 
     private float goalLineValue =  DEFAULT_GOAL_LINE_VALUE;

@@ -47,6 +47,7 @@ public class AxesRenderer {
     private Paint[] labelPaintTab = new Paint[]{new Paint(), new Paint(), new Paint(), new Paint()};
     private Paint[] namePaintTab = new Paint[]{new Paint(), new Paint(), new Paint(), new Paint()};
     private Paint[] linePaintTab = new Paint[]{new Paint(), new Paint(), new Paint(), new Paint()};
+    private Paint goalPaint = new Paint();
     private float[] nameBaselineTab = new float[4];
     private float[] labelBaselineTab = new float[4];
     private float[] separationLineTab = new float[4];
