@@ -383,16 +383,19 @@ public class AxesRenderer {
         axis = chart.getChartData().getAxisYRight();
         if (null != axis) {
             drawAxisLabelsAndName(canvas, axis, RIGHT);
+            drawGoalLine(canvas, axis, RIGHT);
         }
 
         axis = chart.getChartData().getAxisXBottom();
         if (null != axis) {
             drawAxisLabelsAndName(canvas, axis, BOTTOM);
+            drawGoalLine(canvas, axis, BOTTOM);
         }
 
         axis = chart.getChartData().getAxisXTop();
         if (null != axis) {
             drawAxisLabelsAndName(canvas, axis, TOP);
+            drawGoalLine(canvas, axis, TOP);
         }
     }
 
