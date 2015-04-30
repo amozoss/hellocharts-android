@@ -339,6 +339,7 @@ public class AxesRenderer {
         if (null != axis) {
             prepareAxisToDraw(axis, LEFT);
             drawAxisLines(canvas, axis, LEFT);
+            drawGoalLine(canvas, axis, LEFT);
         }
 
         axis = chart.getChartData().getAxisYRight();
@@ -377,7 +378,7 @@ public class AxesRenderer {
         Axis axis = chart.getChartData().getAxisYLeft();
         if (null != axis) {
             drawAxisLabelsAndName(canvas, axis, LEFT);
-            drawGoalLine(canvas, axis, LEFT);
+            //drawGoalLine(canvas, axis, LEFT);
         }
 
         axis = chart.getChartData().getAxisYRight();
